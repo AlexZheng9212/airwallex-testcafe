@@ -3,3 +3,4 @@ package-lock.json
 yarn.lock
 # testcafe
 testcafe/reports
+testcafe/testconfigs/env.json
