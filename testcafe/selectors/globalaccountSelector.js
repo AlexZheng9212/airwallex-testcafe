@@ -9,6 +9,8 @@ export default class GlobalAccountSelector {
     this.newGA = 'button[data-test="new_glocal_account_button"]';
     this.accountCCY = 'global_account_create_account_form_v_2_currency';
     this.nickName = 'div[data-test="global_account_create_account_form_v_2_nick_name"] > div > div > input';
+    this.nickName2 = Selector('div[data-test="global_account_create_account_form_v_2_nick_name"] > div > div > input');
+
     this.create = 'button[data-test="global_account_v_2_create_button"]';
     this.bar = Selector('div[data-test="alert_hook"] > div');
     this.back = 'button[data-test="back_to_account_list_button"]';
@@ -30,7 +32,11 @@ export default class GlobalAccountSelector {
       .click(this.newGA);
     await selectOption(this.accountCCY, 'USD');
     await t
-      .typeText(this.nickName, 'Test Mocha')
+      .typeText(this.nickName, 'Test Mocha');
+    const test = this.nickName2;
+    console.log(`inner text ${JSON.stringify(await test().innerText)}`);
+
+    await t
       .click(this.create)
       .expect(this.bar.innerText)
       .match(/Your new account is created/); // ', '\r\n\r\nYour new account is created');
@@ -46,7 +52,12 @@ export default class GlobalAccountSelector {
       .typeText(this.storeName, 'Cafe Store')
       .typeText(this.storeId, randomId)
       .typeText(this.authToken, '001001110110')
-      .click(this.linkStore)
+      .click(this.linkStore);
+    let ad = await this.bar.innerText;
+    ad += 123;
+    console.log(typeof this.bar.innerText);
+    console.log(ad);
+    await t
       .expect(this.bar.innerText)
       .match(/New platform is linked/)
       .click(this.update)
