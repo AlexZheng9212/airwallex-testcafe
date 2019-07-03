@@ -5,6 +5,7 @@ import { setUp } from '../../support/common/setUp';
 import LoginSelector from '../../selectors/loginSelector';
 import ConversionSelector from '../../selectors/conversionSelector';
 
+const moment = require('moment');
 
 let email;
 let WebAppUrl;
@@ -29,4 +30,10 @@ test('Basic Test', async (t) => {
   await loginSelector.login(email, 'Abcde1234', WebAppUrl);
 
   await conversionSelector.createConversion('GBP', 'HKD', WebAppUrl);
+});
+
+test('Basic Test 2', async (t) => {
+  await loginSelector.login(email, 'Abcde1234', WebAppUrl);
+
+  await conversionSelector.createConversion('GBP', 'HKD', WebAppUrl, moment().add(1, 'day').format('DD/MM/YYYY'));
 });

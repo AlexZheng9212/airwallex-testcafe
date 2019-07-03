@@ -12,10 +12,11 @@ export default class ConversionSelector {
     this.editBuyAmount = 'div[data-test="conversion_buy_edit"]';
     this.sellAmount = 'input[id="sellAmount"]';
     this.catBuyAmount = 'div[data-test="conversion_form_buy-quote-amount"]';
+    this.settlementDate = 'div[data-test="conversion_settlement_date"] > div > div > input';
     this.h2 = Selector('h2');
   }
 
-  async createConversion(buy, sell, url) {
+  async createConversion(buy, sell, url, settlementDateInput = null) {
     await t
       .navigateTo(`${url}conversions/new`);
     await selectOption(this.sell, sell);
@@ -23,9 +24,15 @@ export default class ConversionSelector {
     await t
       .click(this.editSellAmount)
       .typeText(this.sellAmount, '5000', { replace: true })
-      .wait(1000)
+      .wait(1000);
+    if (settlementDateInput) {
+      await t
+        .typeText(this.settlementDate, settlementDateInput, { replace: true });
+    }
+    await t
       .click(this.confirm)
-      .click(this.checkbox)
+      .click(this.checkbox);
+    await t
       .click(this.confirmSubmit)
       .expect(this.h2.innerText)
       .eql('Conversion booking complete');
