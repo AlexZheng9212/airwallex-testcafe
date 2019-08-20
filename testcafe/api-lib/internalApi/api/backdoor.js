@@ -7,4 +7,5 @@ export const backdoor = client => ({
     params: { email },
     transformResponse: [data => data], // prevent axios parsing code as int, from https://stackoverflow.com/questions/43787712/axios-how-to-deal-with-big-integers
   }),
+  deleteUser: data => client.post('/internal/deleteUser', data),
 });

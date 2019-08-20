@@ -1,7 +1,7 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable no-return-assign */
 /* eslint-disable import/prefer-default-export */
-import axois from 'axios';
+import axios from 'axios';
 
 import { authentication } from './api/authentication';
 import { backdoor } from './api/backdoor';
@@ -12,7 +12,7 @@ import wallet from './api/wallet';
 // const DEFAULT_HEADERD = { 'Content-Type': 'application/json' };
 
 export const createInternalApi = () => {
-  const instance = axois.create({
+  const instance = axios.create({
     headers: { 'Content-Type': 'application/json' },
   });
 

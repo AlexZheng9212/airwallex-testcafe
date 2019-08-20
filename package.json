@@ -20,7 +20,8 @@
   },
   "scripts": {
     "test": "testcafe chrome testcafe/spec/globalAccount/*.spec.js --reporter html:testcafe/reports/repports.html",
-    "ie": "testcafe ie:headless testcafe/spec/**/*.spec.js --reporter html:testcafe/reports/repports.html"
+    "ie": "testcafe ie:headless testcafe/spec/**/*.spec.js --reporter html:testcafe/reports/repports.html",
+    "temporary": "testcafe chrome testcafe/spec/globalAccount/*.spec.js --reporter html:testcafe/reports/repports.html"
   },
   "repository": {
     "type": "git",
